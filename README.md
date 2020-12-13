@@ -40,7 +40,7 @@ Using the D3 techniques we taught you in class, create a scatter plot that repre
 
 - - -
 
-### Bonus: Impress the Boss (Optional Assignment)
+<!-- ### Bonus: Impress the Boss (Optional Assignment)
 
 Why make a static graphic when D3 lets you interact with your data?
 
@@ -82,4 +82,4 @@ Your final product will be assessed on the following metrics:
 
 ### Copyright
 
-Trilogy Education Services © 2019. All Rights Reserved.
+Trilogy Education Services © 2019. All Rights Reserved. -->
