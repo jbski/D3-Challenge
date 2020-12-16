@@ -93,9 +93,4 @@ d3.csv("data/data.csv").then(function (censusData) {
         .attr("class", "axisText")
         .text("Lacks Healthcare (%)");
 
-
-
-
-
-
 })
