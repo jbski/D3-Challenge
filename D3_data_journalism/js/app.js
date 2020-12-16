@@ -7,7 +7,7 @@ let margin = {
     top: 60,
     right: 30,
     bottom: 60,
-    left: 60
+    left: 80
 }
 
 let width = svgWidth - margin.left - margin.right;
@@ -26,11 +26,11 @@ let chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Read CSV
-d3.csv("data/data.csv").then(function(censusData) {
+d3.csv("data/data.csv").then(function (censusData) {
     console.log(censusData)
 
     // convert strings to integers
-    censusData.forEach(function(data) {
+    censusData.forEach(function (data) {
         data.healthcare = +data.healthcare;
         data.poverty = +data.poverty;
     })
@@ -46,20 +46,20 @@ d3.csv("data/data.csv").then(function(censusData) {
 
     // create axes
     let xAxis = d3.axisBottom(xScale).ticks(12);
-    let yAxis= d3.axisLeft(yScale).ticks(12);
+    let yAxis = d3.axisLeft(yScale).ticks(12);
 
-    let radius = "25"
+    let radius = "17"
 
     // append axes
     chartGroup.append("g")
         .attr("transform", `translate(${d3.min(censusData, d => d.poverty) - radius * 2}, ${height})`)
-        .call(xAxis);    
+        .call(xAxis);
 
     chartGroup.append("g")
         .attr("transform", `translate(${d3.min(censusData, d => d.poverty) - radius * 2}, 0)`)
         .call(yAxis);
 
-    
+
     // append circles
     let circlesGroup = chartGroup.selectAll("circle")
         .data(censusData)
@@ -70,16 +70,32 @@ d3.csv("data/data.csv").then(function(censusData) {
         .attr("r", radius)
         .classed("stateCircle", true)
 
-    
+
     let text = chartGroup.selectAll(".stateText")
-            .data(censusData)
-            .enter()
-            .append("text")            
-            .attr("x", d => xScale(d.poverty))
-            .attr("y", d => yScale(d.healthcare))
-            .text(d => d.abbr)
-            .classed("stateText", true) 
-   
+        .data(censusData)
+        .enter()
+        .append("text")
+        .attr("x", d => xScale(d.poverty))
+        .attr("y", d => yScale(d.healthcare))
+        .text(d => d.abbr)
+        .classed("stateText", true)
+
+    chartGroup.append("text")
+        .attr("transform", `translate(${(width / 2) - 60}, ${height + margin.top - 15})`)
+        // .attr("class", "axisText")
+        .text("In Poverty (%)")
+        .classed("Atext", true)
+
+    chartGroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", `${0 - 60}`)
+        .attr("x", `${0 - 300}`)
+        .attr("class", "axisText")
+        .text("Lacks Healthcare (%)");
+
+
+
+
 
 
 })
