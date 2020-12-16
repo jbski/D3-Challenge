@@ -26,7 +26,7 @@ let chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Read CSV
-d3.csv("data/data.csv").then(function (censusData) {
+d3.csv("D3_data_journalism/data/data.csv").then(function (censusData) {
     console.log(censusData)
 
     // convert strings to integers
